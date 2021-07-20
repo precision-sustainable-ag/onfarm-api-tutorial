@@ -2,6 +2,15 @@
 
 ## 1. Setting up your environment:
 ### R:
+
+> If you're using RStudio in the Azure Machine Learning workspace, there is a version issue. Run this command from the R console first:
+> ```r
+> system("sudo apt-get install libcurl4-openssl-dev")
+> ```
+> 
+> 
+> Then you can proceed with the rest of the instructions.
+
 1. Load two packages from your R console:
 ```r
 install.packages(c("httr", "jsonlite"))
