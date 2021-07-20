@@ -93,8 +93,8 @@ The format of the response body might be something you specify in your request, 
 
 ```json
 {
-    sometext: 'this is text',
-    somenumbers: [0,1]
+    "sometext": 'this is text',
+    "somenumbers": [0,1]
 }
 ```
 
