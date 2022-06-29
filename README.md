@@ -84,7 +84,7 @@ Now we've added `?` which starts the query string, and passed in two **parameter
 
 > There are restrictions on what characters you can use in a query string. No spaces and only certain punctuation are allowed.
 
-Not all APIs are open and free like this toy one. Sometimes you need to identify yourself with an **API key**. This is a way for the server to verify who you are, what permissions you have, and how much you're using a service. Sometimes API keys are passed in the query string as parameters, but often nowadays they're passed as **headers**:
+Not all APIs are open and free like this toy one. Sometimes you need to identify yourself with an **API key** (or **token**). This is a way for the server to verify who you are, what permissions you have, and how much you're using a service. Sometimes API keys are passed in the query string as parameters, but often nowadays they're passed as **headers**:
 
 ```sh
 curl -H "my-custom-header: my-custom-token" -X GET "https://httpbin.org/anything?param=500"
@@ -145,7 +145,10 @@ We have three main APIs that we currently maintain, all at https://api.precision
  - `/SSURGO` - A wrapper that returns data from the NRCS soil survey
  - `/weather` - A database of gridded weather data pulled from public sources and archived for PSA sites
 
- To get your API key, you need to contact Brian (bwdavis3@ncsu.edu) and get signed up. It will look like this: `57aaf904-e915-11eb-90d2-001dd801118b`. To use your API key, pass it as the custom header:
+ To get your API key, you need to contact Brian (bwdavis3@ncsu.edu) and get signed up. 
+ > If you're already a user of the On-Farm Tech Dashboard, you're good to go: just navigate to the :bust_in_silhouette: icon in the upper right, then click **SHOW** on your API key.
+ 
+ It will look like this: `57aaf904-e915-11eb-90d2-001dd801118b`. To use your API key, pass it as the custom header:
 
  ```
  "x-api-key: 57aaf904-e915-11eb-90d2-001dd801118b" 
