@@ -141,9 +141,9 @@ This is just like a CSV, but a little more careful about how certain types of da
 
 We have three main APIs that we currently maintain:
 
- - `[https://api.precisionsustainableag.org/onfarm](https://api.precisionsustainableag.org/onfarm)` - The PSA on-farm experiment data
- - `[https://ssurgo.covercrop-data.org](https://ssurgo.covercrop-data.org)` - A wrapper that returns data from the NRCS soil survey
- - `[https://weather.covercrop-data.org](https://weather.covercrop-data.org)` - A database of gridded weather data pulled from public sources and archived for PSA sites
+ - [https://api.precisionsustainableag.org/onfarm](https://api.precisionsustainableag.org/onfarm) - The PSA on-farm experiment data
+ - [https://ssurgo.covercrop-data.org](https://ssurgo.covercrop-data.org) - A wrapper that returns data from the NRCS soil survey
+ - [https://weather.covercrop-data.org](https://weather.covercrop-data.org) - A database of gridded weather data pulled from public sources and archived for PSA sites
 
  To get your API key for the On-Farm API, you need to contact Brian (bwdavis3@ncsu.edu) and get signed up. 
  > If you're already a user of the On-Farm Tech Dashboard, you're good to go: just navigate to the :bust_in_silhouette: icon in the upper right, then click **SHOW** on your API key.
