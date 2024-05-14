@@ -139,13 +139,13 @@ This is just like a CSV, but a little more careful about how certain types of da
 
 ## 3. How to get and use your API key:
 
-We have three main APIs that we currently maintain, all at https://api.precisionsustainableag.org:
+We have three main APIs that we currently maintain:
 
- - `/onfarm` - The PSA on-farm experiment data
- - `/SSURGO` - A wrapper that returns data from the NRCS soil survey
- - `/weather` - A database of gridded weather data pulled from public sources and archived for PSA sites
+ - `[https://api.precisionsustainableag.org/onfarm](https://api.precisionsustainableag.org/onfarm)` - The PSA on-farm experiment data
+ - `[https://ssurgo.covercrop-data.org](https://ssurgo.covercrop-data.org)` - A wrapper that returns data from the NRCS soil survey
+ - `[https://weather.covercrop-data.org](https://weather.covercrop-data.org)` - A database of gridded weather data pulled from public sources and archived for PSA sites
 
- To get your API key, you need to contact Brian (bwdavis3@ncsu.edu) and get signed up. 
+ To get your API key for the On-Farm API, you need to contact Brian (bwdavis3@ncsu.edu) and get signed up. 
  > If you're already a user of the On-Farm Tech Dashboard, you're good to go: just navigate to the :bust_in_silhouette: icon in the upper right, then click **SHOW** on your API key.
  
  It will look like this: `57aaf904-e915-11eb-90d2-001dd801118b`. To use your API key, pass it as the custom header:
@@ -154,7 +154,9 @@ We have three main APIs that we currently maintain, all at https://api.precision
  "x-api-key: 57aaf904-e915-11eb-90d2-001dd801118b" 
  ```
 
-You can find the documentation for all of these by going to the address above in your browser. There you can read which endpoints each API has, and what query parameters you can pass.
+You won't need an API key for the Weather API, but you do need to provide your email address in your request.
+
+You can find the documentation for all of these by going to the addresses above in your browser. There you can read which endpoints each API has, and what query parameters you can pass.
 
 ## 4. Putting it all together:
 
