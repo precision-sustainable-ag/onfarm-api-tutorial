@@ -1,11 +1,12 @@
 library(httr)
 
 resp <- GET(
-  url = "https://api.precisionsustainableag.org/weather/averages",
+  url = "https://weather.covercrop-data.org/averages",
   query = list(
     lat = 39.03, lon = -76.87,  # location
     start = "2021-06-01",       # start date in YMD
     end = "2021-06-01",         # end date in YMD
+    email = "youremail@domain.com",
     output = "json" 
   )
 )
