@@ -4,11 +4,12 @@ import pprint    # print JSON cleanly
 
 # Example query URLs
 
-# url = ('https://api.precisionsustainableag.org/weather'
+# url = ('https://weather.covercrop-data.org'
 #        '/averages?lat=39.03&lon=-76.87'  # climate normals, location
 #        '&start=2021-05-01'               # start date in YMD
 #        '&end=2021-06-01'                 # end date in YMD
 #        '&output=json'                    # format
+#        '&email=youremail@domain.com'
 #        )
 
 url = ('https://api.precisionsustainableag.org/onfarm'
