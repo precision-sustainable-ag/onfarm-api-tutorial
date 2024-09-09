@@ -1,0 +1,95 @@
+---
+title: "Protocol Verification"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## How to know whether to include a site for a particular metric
+
+When we executed this trial, some sites did not complete all protocols. We have checked whether a site attempted, completed, or did not attempt each metric in the study. This is stored in a column returned from almost all of the API queries called `protocols`. The contents of this column are:
+
+
+- **1** if a site is expected to execute a protocol; does not indicate data quality.
+- **0** if a site does not execute a protocol.
+- **-1** if a site does a protocol, but shouldn't be included in analysis because of experimental design or other site factors (like unplanned irrigation, improper termination of the bare strip, etc); we still track/show the data for other reasons.
+- **-999** if a site started (or even completed) the protocol but the data is bad/incomplete and shouldn't be shown anywhere, e.g. the field person reports they conducted the protocol incorrectly.
+
+This is also noted at the API documentation: https://api.precisionsustainableag.org/onfarm
+
+## Checking a site
+
+For almost all endpoints, the protocols column is included in every query. Here's an example using dates:
+
+```{r warning = FALSE}
+library(httr)
+library(dplyr, warn.conflicts = F)
+
+my_API_key = readLines("my_API_key.txt")
+
+date_rq <- 
+  GET(
+    "https://api.precisionsustainableag.org/onfarm/dates",
+    query = list(code = "UVV"),
+    add_headers(
+      "x-api-key" = my_API_key
+    )
+  )
+
+content(date_rq, as = "text") %>% 
+  jsonlite::prettify()
+
+```
+
+The returned JSON object shows the protocol values for each metric. So in this example, this site can be used for decomp bags, for example, but not cash crop yield or soil moisture sensors.
+
+If you coerce this JSON object to a dataframe, you can see the `protocols` column is actually a nested dataframe that you can interact with programmatically.
+
+```{r}
+content(date_rq, as = "text") %>% 
+  jsonlite::fromJSON() %>% 
+  as_tibble()
+```
+
+## Checking a site specifically for soil moisture
+
+Because the soil moisture API endpoint returns so many rows that would be duplicated in the `protocols` column, we decided that there should be a two step procedure for these queries. First you need to check one of the other endpoints to get the `protocols` column, then use that to clean the list of sites you're actually querying. In this example we're using the `/raw` endpoint to return the contents of the `site_information` table, but we could use the `/dates`, `/locations`, `/biomass`, or `/yield` endpoints, for example.
+
+```{r}
+info_rq <- 
+  GET(
+    "https://api.precisionsustainableag.org/onfarm/raw",
+    query = list(
+      table = "site_information",
+      code = "NSF"
+      ),
+    add_headers(
+      "x-api-key" = my_API_key
+    )
+  )
+
+content(info_rq, as = "text") %>% 
+  jsonlite::prettify()
+```
+
+Here we can see that this site has the value `1` for the `sensor_data` field of the `protocols` column. This means you can proceed to use this site for soil moisture analysis (after checking whether the data needs to be cleaned further for your use). Then you can query the `/soil_moisture` endpoint for that site:
+
+```{r}
+vwc_rq <- 
+  GET(
+    "https://api.precisionsustainableag.org/onfarm/soil_moisture",
+    query = list(
+      type = "tdr",
+      code = "NSF"
+      ),
+    add_headers(
+      "x-api-key" = my_API_key
+    )
+  )
+
+content(vwc_rq, as = "text") %>% 
+  jsonlite::fromJSON() %>% 
+  as_tibble()
+```
