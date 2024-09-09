@@ -1,5 +1,7 @@
 # PSA API Tutorial
 
+Note that for any API query you make, you should check whether your sites were enrolled for the metric you're analyzing. See: [Protocol Verification](Protocol_Verification.md).
+
 ## 1. Setting up your environment:
 ### R:
 
@@ -168,6 +170,8 @@ First you set up a request and send it, then you parse the response. There are t
  - [R_tutorial.R](R_tutorial.R)
  - [py_tutorial.py](py_tutorial.py)
  - [SAS_tutorial.sas](SAS_tutorial.sas)
+ 
+Note that for any API query you make, you should check whether your sites were enrolled for the metric you're analyzing. See: [Protocol Verification](Protocol_Verification.md).
 
 ### Advanced use
 
@@ -213,3 +217,5 @@ my_soils <- fromJSON(content(my_soils_req, as = "text"))
 ```
 
 And that would return the soil information at the location specified in the first row of the `my_sites_response` dataframe.
+
+Note that for any API query you make, you should check whether your sites were enrolled for the metric you're analyzing. See: [Protocol Verification](Protocol_Verification.md).
